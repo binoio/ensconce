@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ensconce - Hide the apps that won't hide</title>
+    <meta name="description" content="Ensconce lists every running Mac app with open windows and hides or shows them wholesale — including the stubborn ones that ignore ⌘H.">
+    <link rel="icon" type="image/png" href="icon.png">
+    <style>
+        :root {
+            --bg: #0f1526;
+            --fg: #f3f5f9;
+            --secondary: #9aa4b8;
+            --accent: #5c7a99;      /* the pocket lip in the icon */
+            --accent-light: #8fb0d2;
+            --card-bg: #182036;
+            --border: #27314a;
+            --radius: 12px;
+        }
+
+        @media (prefers-color-scheme: light) {
+            :root {
+                --bg: #ffffff;
+                --fg: #1d1d1f;
+                --secondary: #6b7280;
+                --accent: #3d5478;
+                --accent-light: #5c7a99;
+                --card-bg: #f4f6fa;
+                --border: #d9dee8;
+            }
+        }
+
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--fg);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container { max-width: 980px; margin: 0 auto; padding: 0 20px; }
+
+        nav { padding: 20px 0; display: flex; align-items: center; justify-content: space-between; }
+        .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: inherit; font-weight: 600; font-size: 1.2rem; }
+        .logo-icon { width: 36px; height: 36px; border-radius: 8px; display: block; }
+        nav .github { color: var(--accent-light); text-decoration: none; font-weight: 600; }
+
+        header { text-align: center; padding: 70px 0 50px; }
+        .hero-icon { width: 128px; height: 128px; border-radius: 28px; box-shadow: 0 14px 40px rgba(0,0,0,0.35); margin-bottom: 24px; }
+        h1 {
+            font-size: 3.5rem; font-weight: 700; margin: 0 0 16px; letter-spacing: -0.015em;
+            background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .subtitle { font-size: 1.4rem; color: var(--secondary); max-width: 640px; margin: 0 auto 36px; }
+
+        .cta-container { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+        .cta {
+            display: inline-block; background-color: var(--accent); color: #fff; padding: 12px 32px;
+            border-radius: 25px; font-weight: 600; text-decoration: none;
+            transition: transform 0.2s, opacity 0.2s;
+        }
+        .cta:hover { transform: scale(1.04); opacity: 0.92; }
+        .version-info { display: block; font-size: 0.9rem; color: var(--secondary); }
+
+        .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin: 50px 0; }
+        .feature-card {
+            background-color: var(--card-bg); padding: 32px; border-radius: var(--radius);
+            border: 1px solid transparent; transition: border-color 0.3s;
+        }
+        .feature-card:hover { border-color: var(--accent); }
+        .feature-icon { font-size: 2.2rem; margin-bottom: 14px; display: block; }
+        .feature-card h3 { margin: 0 0 8px; font-size: 1.25rem; color: var(--accent-light); }
+        .feature-card p { color: var(--secondary); margin: 0; }
+
+        .how { margin: 70px 0; }
+        .how h2 { font-size: 2rem; margin: 0 0 8px; letter-spacing: -0.01em; }
+        .how > p { color: var(--secondary); max-width: 720px; margin: 0 0 28px; }
+        .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; counter-reset: step; }
+        .step {
+            background: var(--card-bg); border-radius: var(--radius); padding: 18px 18px 18px 20px;
+            border-left: 3px solid var(--accent); font-size: 0.95rem;
+        }
+        .step::before {
+            counter-increment: step; content: counter(step);
+            display: block; font-weight: 700; color: var(--accent-light); font-size: 0.85rem; margin-bottom: 6px;
+        }
+        .step code { font-size: 0.85em; }
+
+        footer { text-align: center; padding: 50px 0; border-top: 1px solid var(--border); color: var(--secondary); font-size: 0.9rem; }
+        footer a { color: var(--accent-light); text-decoration: none; }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .subtitle { font-size: 1.15rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <a href="#" class="logo">
+                <img class="logo-icon" src="icon.png" alt="Ensconce App Icon">
+                Ensconce
+            </a>
+            <a href="https://github.com/binoio/ensconce" class="github">GitHub</a>
+        </nav>
+
+        <header>
+            <img class="hero-icon" src="icon.png" alt="">
+            <h1>Ensconce</h1>
+            <p class="subtitle">Hide the apps that won't hide. Every running app with a window, one button each — and the stubborn ones get tucked away regardless.</p>
+            <div class="cta-container">
+                <a href="https://github.com/binoio/ensconce/releases/latest" class="cta" id="download-btn">Download for macOS</a>
+                <span class="version-info">Requires macOS 14.0 or later • <span id="version-number"></span></span>
+            </div>
+        </header>
+
+        <script>
+            async function updateDownloadLink() {
+                try {
+                    const response = await fetch('https://api.github.com/repos/binoio/ensconce/releases/latest');
+                    const data = await response.json();
+                    const zipAsset = data.assets.find(asset => asset.name.endsWith('.zip'));
+                    if (zipAsset) {
+                        document.getElementById('download-btn').href = zipAsset.browser_download_url;
+                        document.getElementById('version-number').innerText = data.tag_name;
+                    }
+                } catch (error) {
+                    console.error('Error fetching latest release:', error);
+                }
+            }
+            updateDownloadLink();
+        </script>
+
+        <section class="features">
+            <div class="feature-card">
+                <span class="feature-icon">🪟</span>
+                <h3>One Row Per Process</h3>
+                <p>Every app that owns a window, with a Hide or Show button. Two copies of the same app stay separate, because they hide independently.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🫥</span>
+                <h3>Verified Hiding</h3>
+                <p>Five strategies tried in order, each checked against the window server. An app counts as hidden only when none of its windows is on a display.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🧊</span>
+                <h3>Freeze When Hidden</h3>
+                <p>Optionally stop a hidden app cold so it can't bring itself back. Show thaws it again; frozen apps do no background work.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🔍</span>
+                <h3>Get Info</h3>
+                <p>Highlight a row and press ⌘I for its pid, bundle ID, executable, hide state, and every window with its bounds.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🧹</span>
+                <h3>Noise Filtered</h3>
+                <p>macOS helpers — loginwindow, XPC view services, WebKit content — stay out of the list until you ask for them from the View menu.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🔒</span>
+                <h3>No Screen Recording</h3>
+                <p>Window titles come from Accessibility, never from screen capture. Regular apps hide with no permissions at all.</p>
+            </div>
+        </section>
+
+        <section class="how">
+            <h2>How it hides</h2>
+            <p>Each strategy is verified against the window server before Ensconce moves on; a failed attempt is rolled back first, and if all of them fail the row says exactly what was tried.</p>
+            <div class="steps">
+                <div class="step">The real ⌘H — <code>NSRunningApplication.hide()</code>.</div>
+                <div class="step"><code>AXHidden</code> on the application, which reaches agent apps AppKit refuses.</div>
+                <div class="step">System Events <code>set visible to false</code>.</div>
+                <div class="step"><code>AXMinimized</code> on every window.</div>
+                <div class="step">Park every window beyond all displays, remembering each frame.</div>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2026 Michael Bino</p>
+            <p>Part of the Binoio Family of Apps</p>
+            <p><a href="https://github.com/binoio/ensconce">GitHub</a> &nbsp;•&nbsp; <a href="https://github.com/binoio/ensconce/releases">Releases</a></p>
+        </footer>
+    </div>
+</body>
+</html>

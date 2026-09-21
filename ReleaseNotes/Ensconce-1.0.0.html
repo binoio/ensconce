@@ -1,0 +1,13 @@
+<h1>Ensconce 1.0.0</h1>
+<p>Initial release of <strong>Ensconce</strong> — a macOS app that lists every running app with open windows and hides or shows them wholesale, including the ones that refuse ⌘H.</p>
+<h3>Features</h3>
+<ul>
+  <li><strong>One row per process</strong>: every app with open windows, with a Hide/Show button. Two processes of the same app stay separate because they hide independently.</li>
+  <li><strong>Five hide strategies, each verified against the window server</strong>: AppKit hide, Accessibility <code>AXHidden</code>, System Events, per-window minimize, and parking windows off-screen. Failed attempts roll back before the next is tried.</li>
+  <li><strong>Freeze when hidden</strong>: optionally <code>SIGSTOP</code> a hidden app so it cannot re-show itself; Show resumes it.</li>
+  <li><strong>Get Info</strong> (⌘I): pid, bundle ID, executable, kind, hide state, and every window with its bounds, for the highlighted row.</li>
+  <li><strong>View toggles</strong>: show all detected apps (including windowless ones), show app details, and show system processes — macOS helpers such as loginwindow and XPC view services are filtered out by default.</li>
+  <li><strong>Settings</strong>: open at login, freeze on hide, an Accessibility permission panel, and Sparkle update preferences.</li>
+  <li><strong>Sparkle 2 updates</strong>: automatic software update checks.</li>
+  <li><strong>Apple Developer notarized</strong>: signed and notarized with Hardened Runtime for macOS 14 and later.</li>
+</ul>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleName</key><string>Ensconce</string>
+    <key>CFBundleDisplayName</key><string>Ensconce</string>
+    <key>CFBundleExecutable</key><string>Ensconce</string>
+    <key>CFBundleIdentifier</key><string>io.binoio.Ensconce</string>
+    <key>CFBundleInfoDictionaryVersion</key><string>6.0</string>
+    <key>CFBundlePackageType</key><string>APPL</string>
+    <key>CFBundleIconFile</key><string>AppIcon</string>
+    <!-- Both version keys are replaced from VERSION by Scripts/build.sh -->
+    <key>CFBundleShortVersionString</key><string>0.0.0</string>
+    <key>CFBundleVersion</key><string>0.0.0</string>
+    <key>LSMinimumSystemVersion</key><string>14.0</string>
+    <key>NSHighResolutionCapable</key><true/>
+    <key>NSPrincipalClass</key><string>NSApplication</string>
+    <key>NSHumanReadableCopyright</key><string>© 2026 Michael Bino</string>
+    <key>SUFeedURL</key><string>https://binoio.github.io/ensconce/appcast.xml</string>
+    <key>SUPublicEDKey</key><string>nDAE5HXFYg6pBQbAFtyEObXbHu9N7TM+7zUivRcRqNA=</string>
+</dict>
+</plist>
