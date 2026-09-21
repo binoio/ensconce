@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ensconce - Hide the apps that won't hide</title>
-    <meta name="description" content="Ensconce lists every running Mac app with open windows and hides or shows them wholesale — including the stubborn ones that ignore ⌘H.">
+    <title>Ensconce - Hide any app</title>
+    <meta name="description" content="Hide any app. Even the stubborn ones get tucked away.">
     <link rel="icon" type="image/png" href="icon.png">
     <style>
         :root {
@@ -70,7 +70,6 @@
             border: 1px solid transparent; transition: border-color 0.3s;
         }
         .feature-card:hover { border-color: var(--accent); }
-        .feature-icon { font-size: 2.2rem; margin-bottom: 14px; display: block; }
         .feature-card h3 { margin: 0 0 8px; font-size: 1.25rem; color: var(--accent-light); }
         .feature-card p { color: var(--secondary); margin: 0; }
 
@@ -110,7 +109,7 @@
         <header>
             <img class="hero-icon" src="icon.png" alt="">
             <h1>Ensconce</h1>
-            <p class="subtitle">Hide the apps that won't hide. Every running app with a window, one button each — and the stubborn ones get tucked away regardless.</p>
+            <p class="subtitle">Hide any app. Even the stubborn ones get tucked away.</p>
             <div class="cta-container">
                 <a href="https://github.com/binoio/ensconce/releases/latest" class="cta" id="download-btn">Download for macOS</a>
                 <span class="version-info">Requires macOS 14.0 or later • <span id="version-number"></span></span>
@@ -136,34 +135,16 @@
 
         <section class="features">
             <div class="feature-card">
-                <span class="feature-icon">🪟</span>
                 <h3>One Row Per Process</h3>
                 <p>Every app that owns a window, with a Hide or Show button. Two copies of the same app stay separate, because they hide independently.</p>
             </div>
             <div class="feature-card">
-                <span class="feature-icon">🫥</span>
                 <h3>Verified Hiding</h3>
                 <p>Five strategies tried in order, each checked against the window server. An app counts as hidden only when none of its windows is on a display.</p>
             </div>
             <div class="feature-card">
-                <span class="feature-icon">🧊</span>
                 <h3>Freeze When Hidden</h3>
                 <p>Optionally stop a hidden app cold so it can't bring itself back. Show thaws it again; frozen apps do no background work.</p>
-            </div>
-            <div class="feature-card">
-                <span class="feature-icon">🔍</span>
-                <h3>Get Info</h3>
-                <p>Highlight a row and press ⌘I for its pid, bundle ID, executable, hide state, and every window with its bounds.</p>
-            </div>
-            <div class="feature-card">
-                <span class="feature-icon">🧹</span>
-                <h3>Noise Filtered</h3>
-                <p>macOS helpers — loginwindow, XPC view services, WebKit content — stay out of the list until you ask for them from the View menu.</p>
-            </div>
-            <div class="feature-card">
-                <span class="feature-icon">🔒</span>
-                <h3>No Screen Recording</h3>
-                <p>Window titles come from Accessibility, never from screen capture. Regular apps hide with no permissions at all.</p>
             </div>
         </section>
 
@@ -171,11 +152,11 @@
             <h2>How it hides</h2>
             <p>Each strategy is verified against the window server before Ensconce moves on; a failed attempt is rolled back first, and if all of them fail the row says exactly what was tried.</p>
             <div class="steps">
-                <div class="step">The real ⌘H — <code>NSRunningApplication.hide()</code>.</div>
-                <div class="step"><code>AXHidden</code> on the application, which reaches agent apps AppKit refuses.</div>
-                <div class="step">System Events <code>set visible to false</code>.</div>
-                <div class="step"><code>AXMinimized</code> on every window.</div>
-                <div class="step">Park every window beyond all displays, remembering each frame.</div>
+                <div class="step">⌘H</div>
+                <div class="step"><code>AXHidden</code></div>
+                <div class="step">System Events</div>
+                <div class="step"><code>AXMinimized</code></div>
+                <div class="step">Park off-screen</div>
             </div>
         </section>
 
